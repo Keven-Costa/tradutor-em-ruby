@@ -24,8 +24,7 @@ class Tradutor
   end
 end
 
-# Exemplo de uso
-#text_to_translate = 'Hello, how are you?'
+
 print "Digite o texto que você quer traduzir: "
 text_to_translate = gets.chomp.downcase
 print "Digite para qual lingua que você quer traduzir: "
@@ -33,7 +32,7 @@ string_com_acentos = gets.chomp.downcase
 
 string_sem_acentos = UnicodeUtils.nfkd(string_com_acentos).gsub(/[^\x00-\x7F]/, "")
 
-# Mapeamento dos idiomas alvo
+
 language_mapping = {
   "arabe" => "ar",
   "portugues" => "pt",
@@ -69,19 +68,16 @@ language_mapping = {
   "vietnamita" => "vi",
 }
 
-# Verifica se o idioma é suportado no mapeamento
 if language_mapping.key?(string_sem_acentos)
   target_language = language_mapping[string_sem_acentos]
 
   source_language = "en-us"
   translated_text = Tradutor.new::translate_text(text_to_translate, source_language, target_language)
 
-  # Abrir o arquivo para escrita
   current_time = Time.now.strftime("%d-%m-%Y_%H:%M:%S")
   file_name = "#{current_time}.txt"
 
   File.open(file_name, "w") do |file|
-    # Código para escrever no arquivo
     file.puts "Texto original: #{text_to_translate}"
     file.puts ""
     file.puts ""
